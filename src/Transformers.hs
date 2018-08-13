@@ -15,14 +15,14 @@ data Exp
     = Lit Integer -- expressions
     | Var Name
     | Plus Exp Exp
-    | Abs Name Exp
-    | App Exp Exp
-        deriving (Show)
+    | Abs Name Exp -- lambda expression (abstractions)
+    | App Exp Exp -- function application
+        deriving (Eq, Show)
 
 data Value 
-    = IntVal Integer -- values
-    | FunVal Env Name Exp
-        deriving (Show)
+    = IntVal Integer 
+    | FunVal Env Name Exp -- functions
+        deriving (Eq, Show)
 
 type Env = Map.Map Name Value -- mapping from names to values
 
@@ -40,7 +40,7 @@ eval0 env (Plus e1 e2 ) =
         IntVal i1 = eval0 env e1
         IntVal i2 = eval0 env e2
     in 
-        IntVal (i1 + i2 )
+        IntVal (i1 + i2)
 
 eval0 env (Abs n e) = 
     FunVal env n e
@@ -52,4 +52,3 @@ eval0 env (App e1 e2 ) =
     in 
         case val1 of
             FunVal env' n body -> eval0 (Map.insert n val2 env') body
-        

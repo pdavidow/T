@@ -40,7 +40,7 @@ executables:
 
 tests:
   T-test:
-    main:                Spec.hs
+    main:                test.hs
     source-dirs:         test
     ghc-options:
     - -threaded
