@@ -22,7 +22,13 @@ description:         Please see the README on GitHub at <https://github.com/gith
 dependencies:
 - base >= 4.7 && < 5
 - mtl
+- transformers
 - containers
+- random
+- tasty
+- tasty-hunit
+- tasty-smallcheck
+- tasty-quickcheck
 
 library:
   source-dirs: src
